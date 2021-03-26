@@ -5,21 +5,24 @@ export default function Form(props) {
        values,
        onSubmit,
        onInputChange,
+       checkbox,
+       onCheckboxChange,
        disabled,
        errors 
     } = props;
 
-    const onSubmit = (evt) => {
+    const submitForm = (evt) => {
         evt. preventDefault();
         onSubmit();
     };
 
     return (
-        <form className="pizza_container" onSubmit={submit}>
+        <form className="pizza_container" onSubmit={submitForm}>
             <div className="welcome">
                 <h1>Build Your Own Pizza</h1>
 
                 {/* //INSERT IMAGE HERE// */}
+
             </div>
 
             <div className="pizza_header">
@@ -29,8 +32,7 @@ export default function Form(props) {
             <div className="size_selection">
                 <h3>Choice of Size</h3>
                 <h4>Required</h4>
-            </div>
-            
+        
             <label>
                 <select
                 onChange={onInputChange}
@@ -43,14 +45,17 @@ export default function Form(props) {
                     <option value="Large">Large</option>
                 </select>
             </label>
+            </div>
 
             <div className="sauce_selection">
                 <h3>Choice of Sauce</h3>
                 <h4>Required</h4>
 
                 {/* //INSERT RADIO BUTTON INFO// */}
+
             </div>
 
+            <div>
             <h3>AddToppings</h3>
             <h4>Choose up to 4</h4>
                 <label>Pepperoni&nbsp;
@@ -169,5 +174,21 @@ export default function Form(props) {
                   checked={values.toppings.extra_cheese}
                   />
                 </label>
-                
-    
+            </div>
+
+            <div className="special_instructions">
+                <h3>Special Instructions</h3>
+                <label>
+                    Anything Else You'd Like To Add?&nbsp;
+                    <input
+                    value={values.instructions}
+                    onChange={onInputChange}
+                    name="instructions"
+                    type="text"
+                />
+                </label>
+            </div>
+    <button disabled={disabled} id="myBTN" >Submit Your Order</button>
+        </form>
+    );
+}
