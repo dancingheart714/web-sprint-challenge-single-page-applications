@@ -5,6 +5,7 @@ import axios from "axios";
 import * as yup from "yup";
 import Form from "./Form";
 import FormSchema from "./FormSchema";
+import Home from './Home'
 
 
 
@@ -42,7 +43,7 @@ const initialFormValues = {
 };
 
 const initialFormErrors = {
-  instructions: "",
+  size: "",
 
 };
 
@@ -58,23 +59,10 @@ const [formErrors, setFormErrors] = useState(initialFormErrors);
 const [disabled, setDisabled] = useState(initialDisabled);
 const [newPizza, setNewPizza] = useState([]);
 
-        //Post, onChange, inputChange, checkboxChange, formSubmit//
 
-// const postNewPizza = (newPizza) => {
-//   axios
-//   .post(dummyData, newPizza)
-//   .then ((res) => {
-//     setPizza([...pizza, res.data])
-//     console.log(res)
-//  })
-//   .catch ((err) => {
-//     console.log(err);
-//   })
-//   .finally(() => setFormValues(initialFormValues))
-// };
+//Test set up//
 
-const inputChange = event => {
-  const { name, value } = event.target;
+const test = (name, value) => {
   yup
    .reach(FormSchema, name)
    .validate(value)
@@ -90,19 +78,25 @@ const inputChange = event => {
        [name]: err.errors[0],
      })
    })
-  
-  setFormValues ({
-    ...formValues,
-    [name]: value,
+  }
+
+   //Input change//
+   
+const inputChange = event => {
+  const {name, value} = event.target;
+    test(name, value)
+    setFormValues({
+      ...formValues,
+      [name]: value
   })
 }
+  
+// Checkbox Change//
 
 const onCheckBoxChange = event => {
   const {name, checked} = event.target;
-
   setFormValues ({
     ...formValues,
-    [name]: checked,
     toppings: {
     ...formValues,
     [name]: checked,
@@ -110,9 +104,10 @@ const onCheckBoxChange = event => {
   })
 }
 
+//Submit the form//
+
 const formSubmit = (e) => {
   e.preventDefault ();
-
 const newPizza = {
   size: formValues.size,
   sauce: formValues.sauce,
@@ -122,6 +117,12 @@ const newPizza = {
 setNewPizza(newPizza);
 }
 
+//useEffect//
+
+useEffect(() => {
+  console.log(formValues)
+}, [formValues])
+
 useEffect(() => {
   FormSchema.isValid(formValues)
   .then (valid => {
@@ -129,37 +130,43 @@ useEffect(() => {
   })
 }, [formValues]);
 
-
-                      //Return, Route//
+//Return//
 
   return (
-  <div>
-    <Switch>
-      <Route path= "/form">
-        <Form
+    <div className="pizzaHeader">
+      <h1>Lambda Eats</h1>
+      <nav>
+        <div className="navigation">
+          <Link to='/form' id='orderForm'>Order Now!</Link>
+          <Link to='/help' id='help'>Help</Link>
+          <Link to='/' id='home'>Home</Link>
+      </div>
+      </nav>
+  
+
+      <Switch>
+        <Route path='/help'>
+          <h1>Craving Pizza? Let us help!</h1>
+        </Route>
+        <Route path='/form'>
+        <Form 
           values={formValues}
           onInputChange={inputChange}
-          onCheckboxChange={onCheckBoxChange}
+          checkbox={onCheckBoxChange}
           onSubmit={formSubmit}
           disabled={disabled}
           errors={formErrors}
-        />  
+          />
       </Route>
-    </Switch>
+        </Switch>
     
-    <header className="pizzaHeader">
-      <h1>Lambda Eats</h1>
-      <nav className="navigation">
-        <a to="/">Home</a>
-        <br></br>
-        <a to="/">Help</a>
-      </nav>
-    </header>
-    <div>
+
+      <div>
       <h2>Your Favorite Pizza Delivered While Coding</h2>
       <img className="pizza" img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-homemade-pizza-horizontal-1542312378.png" alt="pizza"></img>
-    </div>
-
-  </div>
+        
+       
+    </div> 
+    </div> 
 )
-}
+  }

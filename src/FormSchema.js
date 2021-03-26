@@ -6,6 +6,10 @@ const FormSchema = Yup.object().shape({
     .required("required")
     .oneOf(["Small", "Medium", "Large"]),
 
+sauce: Yup
+    .string()
+    .oneOf(["Original Red", "Garlic Ranch", "BBQ Sauce", "Spinach Alfredo"]),
+
  instructions: Yup
     .string()
 
