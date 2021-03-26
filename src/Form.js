@@ -51,6 +51,20 @@ export default function Form(props) {
                 <h3>Choice of Sauce</h3>
                 <h4>Required</h4>
 
+            <div>
+                <select
+                onChange={onInputChange}
+                value={values.sauce}
+                name="sauce"
+                >
+                    <option value="">-- Select Sauce --</option>
+                    <option value="original_red">Original Red</option>
+                    <option value="garlic_ranch">Garlic Ranch</option>
+                    <option value="bbq_sauce">BBQ Sauce</option>
+                    <option value="spinach_alfredo">Spinach Alfredo</option>
+                </select>    
+            </div>    
+
                 {/* //INSERT RADIO BUTTON INFO// */}
 
             </div>

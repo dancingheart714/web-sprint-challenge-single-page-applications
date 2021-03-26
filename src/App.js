@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-// import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link } from "react-router-dom";
 import './App.css';
 import axios from "axios";
 import * as yup from "yup";
 import Form from "./Form";
 import FormSchema from "./FormSchema";
-import {ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
+
 
 
                       //Initial Form Values//
@@ -130,10 +130,23 @@ useEffect(() => {
 }, [formValues]);
 
 
-                      //Return//
+                      //Return, Route//
 
   return (
   <div>
+    <Switch>
+      <Route path= "/form">
+        <Form
+          values={formValues}
+          onInputChange={inputChange}
+          onCheckboxChange={onCheckBoxChange}
+          onSubmit={formSubmit}
+          disabled={disabled}
+          errors={formErrors}
+        />  
+      </Route>
+    </Switch>
+    
     <header className="pizzaHeader">
       <h1>Lambda Eats</h1>
       <nav className="navigation">
@@ -142,6 +155,11 @@ useEffect(() => {
         <a to="/">Help</a>
       </nav>
     </header>
+    <div>
+      <h2>Your Favorite Pizza Delivered While Coding</h2>
+      <img className="pizza" img src="https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/delish-homemade-pizza-horizontal-1542312378.png" alt="pizza"></img>
+    </div>
+
   </div>
 )
 }
