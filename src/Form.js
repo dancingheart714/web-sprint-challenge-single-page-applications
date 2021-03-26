@@ -71,7 +71,7 @@ export default function Form(props) {
 
             <div className="topping_selection">
             <h3>AddToppings</h3>
-            <h4>Choose up to 4</h4>
+            <h4>Choose Your Favorites</h4>
                 <label>Pepperoni&nbsp;
                   <input 
                   name='pepperoni'

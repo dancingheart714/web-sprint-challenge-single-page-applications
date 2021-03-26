@@ -2,6 +2,7 @@ describe('Inputs', () => {
     it('can navigate to the website', () => {
         cy.visit('http://localhost:3000')
     })
+  })
   
     it('can do some basic math', () => {
           expect(1+1).to.equal(2); //assertions
@@ -16,7 +17,7 @@ describe('Inputs', () => {
           .select("small")
           .should("have.value", "small")
     })
-  
+  })
     it("can select multiple toppings", () => {
       cy.get('[type="checkbox"]')
         .check()
@@ -26,4 +27,4 @@ describe('Inputs', () => {
         cy.get("button#myBtn")
           .click()     
     })
-  })
+  

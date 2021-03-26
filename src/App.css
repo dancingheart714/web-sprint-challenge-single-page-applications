@@ -69,7 +69,7 @@ checkbox, input, dropdown {
 
 h1{
     font-size:5rem;
-    text-align: left;
+    text-align: center;
     margin: 0%;
 }
 h2{
@@ -155,8 +155,18 @@ h4 {
     color: red;
 }
 
-button {
-    
+.myBtn {
+    border: solid blue;
+  color:red;
+  padding: 25px 42px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 24px;
+  margin-left: 300px;
+  margin-right: 70px;
+  margin-top: 20px;
+  cursor: pointer; 
 }
 
 
